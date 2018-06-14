@@ -9,9 +9,9 @@ import scrapy
 
 
 class BookItem(scrapy.Item):
-    title = scrapy.Field()
+    name = scrapy.Field()
     price = scrapy.Field()
-    praise = scrapy.Field()
+    # praise = scrapy.Field()
 
 
 class JdItem(scrapy.Item):
