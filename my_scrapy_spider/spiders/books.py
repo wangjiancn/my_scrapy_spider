@@ -6,7 +6,7 @@ from ..items import BookItem
 
 class BooksSpider(scrapy.Spider):
     name = 'books'
-    allowed_domains = ['http://books.toscrape.com/*']
+    allowed_domains = ['books.toscrape.com']
     start_urls = ['http://books.toscrape.com']
 
     def parse(self, response):
@@ -25,4 +25,4 @@ class BooksSpider(scrapy.Spider):
         links = le.extract_links(response)
         if links:
             next_url = links[0].url
-            yield scrapy.Request(next_url, callback=self.parse,dont_filter=True)
+            yield scrapy.Request(next_url, callback=self.parse)
