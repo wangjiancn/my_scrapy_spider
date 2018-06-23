@@ -6,6 +6,7 @@
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 from pymongo import MongoClient
 from scrapy import Item
+import MySQLdb
 
 
 class MongoDBPipeline:
@@ -33,7 +34,27 @@ class MongoDBPipeline:
         self.collection.insert_one(item)
 
 
+class MySQLPipeline:
+    def open_spider(self, spider):
+        self.client = MySQLdb.connect(host='localhost',
+                                      user='python2',
+                                      passwd='python2',
+                                      port=3306,
+                                      db='books')
+        self.cursor = self.client.cursor()
+
+    def close_spider(self, spider):
+        self.client.commit()
+        self.client.close()
+
+    def process_item(self, item, spider):
+        self.insert_db(item)
+        return item
+
+    def insert_db(self, item):
+        values = (item['name'], item['price'])
+        sql = 'insert into books values(%s,%s)'
+        self.cursor.execute(sql, values)
 # class MyScrapySpiderPipeline(object):
 #     def process_item(self, item, spider):
 #         return item
-
