@@ -18,7 +18,7 @@ class MongoDBPipeline:
         # self.db = self.db_client[db_name]
         self.client = MongoClient('mongodb://localhost:27017')
         self.db = self.client['books']
-        self.collection = self.db['booksdetails']
+        self.collection = self.db[spider.db_name]
 
     def close_spider(self, spider):
         self.client.close()

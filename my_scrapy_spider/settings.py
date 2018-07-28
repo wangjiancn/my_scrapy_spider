@@ -64,8 +64,8 @@ ROBOTSTXT_OBEY = False
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'my_scrapy_spider.pipelines.MySQLPipeline': 200,
-    # 'my_scrapy_spider.pipelines.MongoDBPipeline': 300,
+    # 'my_scrapy_spider.pipelines.MySQLPipeline': 200,
+    'my_scrapy_spider.pipelines.MongoDBPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -92,3 +92,14 @@ ITEM_PIPELINES = {
 
 MONGODB_URI = 'mongodb://localhost:27017'
 MONGODB_DB_NAME = 'books'
+
+# LOG_ENABLED 默认: True，启用logging
+# LOG_ENCODING 默认: 'utf-8'，logging使用的编码
+# LOG_FILE 默认: None，在当前目录里创建logging输出文件的文件名
+# LOG_LEVEL 默认: 'DEBUG'，log的最低级别
+# LOG_STDOUT 默认: False 如果为 True，进程所有的标准输出(及错误)将会被重定向到log中。例如，执行 print "hello" ，其将会在Scrapy log中显示
+
+# LOG_ENABLED=True
+# LOG_ENCODING='utf-8'
+# LOG_STDOUT=False
+# LOG_FILE='error.log'
